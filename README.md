@@ -1,5 +1,3 @@
-# EmployeeTracker
-
 # Employee Tracker
   The purpose of this application is to navgiate a SQL database for a company. There are 3 tables: employee, department, and role.
 
