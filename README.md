@@ -26,9 +26,6 @@
   ## How to Test 
   Clone or download the repo and run the application 
 
-  ## License 
-  MIT
-
   ## GitHub Username 
   @buildGal
 
