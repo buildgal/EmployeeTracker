@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
-
+const cTable = require("console.table");
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -83,7 +83,7 @@ const connection = mysql.createConnection({
       connection.query("SELECT * FROM employee_tb",
       function(err, res){
           if (err) throw err 
-          console.log(res)
+          console.table(res);
           displayQuestion();
       })
   }
@@ -94,7 +94,7 @@ function addDept(){
   connection.query("###Update",
   function(err, res){
       if (err) throw err 
-      console.log(res)
+      console.table(res)
       displayQuestion();
   })
 
@@ -105,7 +105,7 @@ function addRole(){
   connection.query("###Update",
   function(err, res){
       if (err) throw err 
-      console.log(res)
+      console.table(res)
       displayQuestion();
   })
 
@@ -116,7 +116,7 @@ function addEmpoyee(){
   connection.query("###Update",
   function(err, res){
       if (err) throw err 
-      console.log(res)
+      console.table(res)
       displayQuestion();
   })
 
@@ -129,7 +129,7 @@ function viewDept(){
   connection.query("SELECT * FROM employee_tb",
   function(err, res){
       if (err) throw err 
-      console.log(res)
+      console.table(res)
       displayQuestion();
   })
 }
@@ -138,7 +138,7 @@ function viewRole(){
   connection.query("SELECT * FROM employee_tb",
   function(err, res){
       if (err) throw err 
-      console.log(res)
+      console.table(res)
       displayQuestion();
   })
 }
@@ -147,7 +147,7 @@ function viewEmployee(){
   connection.query("SELECT * FROM employee_tb",
   function(err, res){
       if (err) throw err 
-      console.log(res)
+      console.table(res)
       displayQuestion();
   })
 }
@@ -161,7 +161,7 @@ function updateRole(){
   connection.query("###Update",
   function(err, res){
       if (err) throw err 
-      console.log(res)
+      console.table(res)
       displayQuestion();
   })
 
@@ -169,5 +169,3 @@ function updateRole(){
 
 //I just have to add the query functions 
 //I also have to use that fancy new display table 
-//then this HW should be good to go... maybe like 2 hours left on this max... if not distracted! 
-//make sure to add the Forgein keys from the diagram as well 
