@@ -54,21 +54,26 @@ const connection = mysql.createConnection({
             break;
 
             case "View by deparment":
+              viewDept();
             break;
 
             case "View by employee":
+              viewEmployee();
             break;
 
             case "Add a department":
             break;
 
             case "Add a role":
+              addRole();
             break;
 
             case "Add an employee":
+              addEmpoyee();
             break;
 
             case "Update employee role":
+              updateRole()
             break;
                 
                 
