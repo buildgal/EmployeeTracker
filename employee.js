@@ -25,7 +25,7 @@ const connection = mysql.createConnection({
           message: "What action would you like to take?",
           name:"choice",
           choices: [
-              "View All",
+              "View All Employees",
               "View all by Role",
               "View by deparment",
               "View by employee",
@@ -44,8 +44,8 @@ const connection = mysql.createConnection({
           ]}
         ]).then(function(data){
           switch (data.choice){
-              case "View All":
-                viewAll();
+              case "View All Employees":
+                viewEmployee();
             break;
 
               case "View all by Role":
@@ -74,22 +74,9 @@ const connection = mysql.createConnection({
 
             case "Update employee role":
               updateRole()
-            break;
-                
-                
-                
-          
+            break;          
           
           }
-      })
-  }
-
-  function viewAll(){
-      connection.query("SELECT * FROM employee_tb",
-      function(err, res){
-          if (err) throw err 
-          console.table(res);
-          displayQuestion();
       })
   }
 
@@ -131,7 +118,7 @@ function addEmpoyee(){
 //functions that view the table 
 
 function viewDept(){
-  connection.query("SELECT * FROM employee_tb",
+  connection.query("SELECT * FROM department_tb",
   function(err, res){
       if (err) throw err 
       console.table(res)
@@ -140,7 +127,7 @@ function viewDept(){
 }
 
 function viewRole(){
-  connection.query("SELECT * FROM employee_tb",
+  connection.query("SELECT * FROM role_tb",
   function(err, res){
       if (err) throw err 
       console.table(res)
