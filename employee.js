@@ -170,3 +170,4 @@ function updateRole(){
 //I just have to add the query functions 
 //I also have to use that fancy new display table 
 //then this HW should be good to go... maybe like 2 hours left on this max... if not distracted! 
+//make sure to add the Forgein keys from the diagram as well 
