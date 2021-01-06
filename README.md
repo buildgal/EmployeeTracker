@@ -31,6 +31,5 @@
   Email: [gjaquelin7@outlook.com]
 
   ## Recording
-  ![](###)
-
+  ![](EmployeeTracker-1609893066595.mp4)
 

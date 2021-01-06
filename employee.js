@@ -104,8 +104,8 @@ function addRole(){
 }
 
 function addEmpoyee(){
-
-  connection.query("###Update",
+//need to ask the user info, research inquirer 
+  connection.query("INSERT INTO employee_tb",
   function(err, res){
       if (err) throw err 
       console.table(res)
@@ -136,7 +136,7 @@ function viewRole(){
 }
 
 function viewEmployee(){
-  connection.query("SELECT * FROM employee_tb",
+  connection.query("SELECT * FROM employee_tb, role_tb.title, role_tb.salary, department_tb.name",
   function(err, res){
       if (err) throw err 
       console.table(res)
@@ -150,7 +150,7 @@ function viewEmployee(){
 
 function updateRole(){
 
-  connection.query("###Update",
+  connection.query("###",
   function(err, res){
       if (err) throw err 
       console.table(res)
