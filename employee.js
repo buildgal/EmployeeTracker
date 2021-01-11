@@ -25,11 +25,10 @@ const connection = mysql.createConnection({
           message: "What action would you like to take?",
           name:"choice",
           choices: [
-              "View All Employees",
+              "View all Employees",
               "View all by Role",
               "View by deparment",
-              "View by employee",
-              "Add a department",
+               "Add a department",
               "Add a role",
               "Add an employee",
               "Update employee role",
@@ -57,11 +56,8 @@ const connection = mysql.createConnection({
               viewDept();
             break;
 
-            case "View by employee":
-              viewEmployee();
-            break;
-
             case "Add a department":
+              addDept();
             break;
 
             case "Add a role":
@@ -82,6 +78,23 @@ const connection = mysql.createConnection({
 
   //Functions that add something to the table 
 function addDept(){
+    inquirer.prompt([{
+      name:"department_Name",
+      type:"input",
+      message:"Enter department name."
+    }]).then (function (deptAnswers){
+      connection.query("INSERT INTO department_tb SET ?",
+      {
+       department_name: deptAnswers.department_Name
+      }, function (err){
+        if (err) throw err 
+        console.table(deptAnswers)
+        displayQuestion()
+      }
+      )      
+
+    })
+  }
 
   connection.query("###Update",
   function(err, res){
@@ -90,7 +103,7 @@ function addDept(){
       displayQuestion();
   })
 
-}
+
 
 function addRole(){
 
@@ -105,16 +118,48 @@ function addRole(){
 
 function addEmpoyee(){
 //need to ask the user info, research inquirer 
-  connection.query("INSERT INTO employee_tb",
-  function(err, res){
-      if (err) throw err 
-      console.table(res)
-      displayQuestion();
+inquirer.prompt([
+  {
+    
+    type:"input",
+    message: "Enter employee first name",
+    name: "employeeFN"
+  },
+  {
+    type:"input",
+    message:"Enter employee last name",
+    name:"employeeLN"
+
+  },
+  {
+    type:"input",
+    message:"Enter the employee's role id",
+    name:"employeeR"
+  },
+  {
+    type:"input",
+    message:"Enter employee's manager's id",
+    name:"employeeM'"
+  }
+
+]).then( function (answers){
+  //we want to grab the answers and insert to SQL
+  //grab answers 
+  connection.query("INSERT INTO employee_tb SET ?",
+  {
+    first_name: answers.employeeFN,
+    last_name:answers.employeeLN,
+    role_id: answers.employeeR,
+    manager_id: answers.employeeM
+  },
+  function(err){
+    if (err) throw err 
+    console.table(answers)
+    displayQuestion()
   })
 
+})
 }
-
-
 //functions that view the table 
 
 function viewDept(){
@@ -127,7 +172,7 @@ function viewDept(){
 }
 
 function viewRole(){
-  connection.query("SELECT * FROM role_tb",
+  connection.query("SELECT * FROM role_tb", 
   function(err, res){
       if (err) throw err 
       console.table(res)
@@ -137,6 +182,7 @@ function viewRole(){
 
 function viewEmployee(){
   connection.query("SELECT * FROM employee_tb, role_tb.title, role_tb.salary, department_tb.name",
+  
   function(err, res){
       if (err) throw err 
       console.table(res)
@@ -158,6 +204,3 @@ function updateRole(){
   })
 
 }
-
-//I just have to add the query functions 
-//I also have to use that fancy new display table 
