@@ -96,25 +96,49 @@ function addDept(){
     })
   }
 
-  connection.query("###Update",
-  function(err, res){
-      if (err) throw err 
-      console.table(res)
-      displayQuestion();
-  })
-
-
 
 function addRole(){
+  inquirer.prompt([
+    {
+      type:"input",
+      message:"Enter a title.",
+      name:"title"
+    },
+    {
+      type:"input",
+      message:"Enter a salary.",
+      name:"salary"
+    },
+    {
+      type:"input",
+      message:"Enter a department ID.",
+      name:"Department_ID"
+      //choices:[
+      //  "Select an ID"
+      //]
+    }]).then(function(data){
+      //switch (data.choice){
+       // case "Select an ID":
+       // viewDept();
+       // break;
+       connection.query ("INSERT INTO role_tb SET?",
 
-  connection.query("###Update",
-  function(err, res){
-      if (err) throw err 
-      console.table(res)
-      displayQuestion();
-  })
+       {
+         title: data.title,
+         salary:data.salary,
+         department_id:"Department_ID",
 
-}
+       },
+
+       function(err){
+        if (err) throw err 
+        console.table(answers)
+        displayQuestion()
+      })
+    
+    })
+    }
+
 
 function addEmpoyee(){
 //need to ask the user info, research inquirer 
@@ -195,12 +219,28 @@ function viewEmployee(){
 //functions that update the table 
 
 function updateRole(){
-
-  connection.query("###",
-  function(err, res){
-      if (err) throw err 
-      console.table(res)
-      displayQuestion();
-  })
-
+  inquirer.prompt([
+  {
+    name: "updated role",
+    type: "rawlist",
+    message: "Enter the new title. ",
+    choices: viewRole()
+  },
+]).then(function(updatedRole) {
+let newRole = viewRole().indexOf(updateRole.role) + 1
+connection.query("UPDATE employee_tb SET WHERE ?", 
+{
+  last_name: updatedRole.lastName
+   
+}, 
+{
+  role_id: newRole
+   
+}, 
+function(err){
+    if (err) throw err
+    console.table(updateRole)
+    displayQuestion();
+})
+})
 }
