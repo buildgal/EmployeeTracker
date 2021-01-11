@@ -205,7 +205,7 @@ function viewRole(){
 }
 
 function viewEmployee(){
-  connection.query("SELECT * FROM employee_tb, role_tb.title, role_tb.salary, department_tb.name",
+  connection.query("SELECT * FROM employee_tb",
   
   function(err, res){
       if (err) throw err 
